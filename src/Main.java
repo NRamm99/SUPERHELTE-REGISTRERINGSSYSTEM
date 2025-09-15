@@ -44,6 +44,7 @@ public class Main {
 
         System.out.print("My powerlevel is: ");
         int level =  input.nextInt();
+        input.nextLine();
 
         return new Hero(name, power, level);
     }
