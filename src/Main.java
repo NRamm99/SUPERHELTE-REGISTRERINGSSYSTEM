@@ -1,36 +1,60 @@
 import java.util.Scanner;
 
-//TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
-// click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
 public class Main {
+
+    static class Hero {
+        final String name;
+        final String power;
+        final int level;
+
+        Hero(String name, String power, int level) {
+            this.name = name;
+            this.power = power;
+            this.level = level;
+        }
+    }
+
     public static void main(String[] args) {
         Scanner input = new Scanner(System.in);
 
         clearConsole();
+        Hero h1 = readHero(input, 1);
+        clearConsole();
+        Hero h2 = readHero(input, 2);
+        clearConsole();
+        Hero h3 = readHero(input, 3);
+
+        clearConsole();
+        System.out.println("----- ALL SUPERHEROES -----");
+        printHero(h1);
+        System.out.println();
+        printHero(h2);
+        System.out.println();
+        printHero(h3);
+    }
+
+    private static Hero readHero(Scanner input, int number) {
+        System.out.println("Superhero #" + number);
+
         System.out.print("My name is: ");
         String name = input.nextLine();
 
-        clearConsole();
         System.out.print("My superpower is: ");
-        String superPower = input.nextLine();
+        String power = input.nextLine();
 
-        clearConsole();
         System.out.print("My powerlevel is: ");
-        int powerLevel = input.nextInt();
+        int level =  input.nextInt();
 
-        clearConsole();
-        superPrint(name, superPower, powerLevel);
-
+        return new Hero(name, power, level);
     }
 
-    public static void superPrint(String name, String superPower, int powerLevel) {
-
-        System.out.println("Name: " + name);
-        System.out.println("Superpower: " + superPower);
-        System.out.println(getStrengthDescription(powerLevel));
+    private static void printHero(Hero h) {
+        System.out.println("Name: " + h.name);
+        System.out.println("Superpower: " + h.power);
+        System.out.println(getStrengthDescription(h.level));
     }
 
-    public static String getStrengthDescription(int powerLevel) {
+    private static String getStrengthDescription(int powerLevel) {
         if (powerLevel >= 80) {
             return "Powerlevel: " + powerLevel + " - OP";
         } else if (powerLevel >= 50) {
@@ -39,7 +63,6 @@ public class Main {
             return "Powerlevel: " + powerLevel + " - Weak";
         }
     }
-
     public static void clearConsole() {
         for (int n = 0; n <= 20; n++) {
             System.out.println();
